@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--
+        POM PARENT (Agrégateur + Gestionnaire de dépendances)
+
+        Rôle double :
+        1. AGRÉGATEUR : liste les 4 modules Maven → `mvn install` compile tout dans l'ordre
+        2. GESTIONNAIRE : déclare les versions une seule fois → les modules héritent sans répéter
+    -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.5</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.ecommerce</groupId>
+    <artifactId>ecom-backend</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging> <!-- "pom" = ce module ne produit pas de JAR, il orchestre -->
+    <name>ecom-backend :: Parent</name>
+
+    <properties>
+        <java.version>21</java.version>
+        <springdoc.version>2.5.0</springdoc.version>
+    </properties>
+
+    <!-- Liste des 4 modules (ordre = ordre de compilation Maven) -->
+    <modules>
+        <module>ecom-domain</module>         <!-- 1. Compilé en premier : aucune dépendance externe -->
+        <module>ecom-application</module>    <!-- 2. Dépend de domain -->
+        <module>ecom-infrastructure</module> <!-- 3. Dépend de domain + application -->
+        <module>ecom-exposition</module>     <!-- 4. Dépend de tout + point d'entrée Spring Boot -->
+    </modules>
+
+    <!--
+        dependencyManagement : centralise les VERSIONS
+        Les modules déclarent juste <groupId>/<artifactId>, sans <version>
+        Ils héritent automatiquement de ce bloc.
+    -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- Modules internes -->
+            <dependency>
+                <groupId>com.ecommerce</groupId>
+                <artifactId>ecom-domain</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ecommerce</groupId>
+                <artifactId>ecom-application</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ecommerce</groupId>
+                <artifactId>ecom-infrastructure</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Swagger / OpenAPI -->
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- Dépendances communes à TOUS les modules -->
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

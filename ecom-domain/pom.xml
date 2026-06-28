@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.ecommerce</groupId>
+        <artifactId>ecom-backend</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>ecom-domain</artifactId>
+    <name>ecom-backend :: Domain</name>
+
+    <!--
+        MODULE DOMAIN : Le cœur métier PUR
+        ====================================
+        RÈGLE D'OR de l'architecture hexagonale :
+        Ce module N'A AUCUNE dépendance vers Spring, JPA, ou toute librairie technique.
+        Il ne contient QUE du Java pur : entités, règles métier, ports (interfaces).
+
+        Pourquoi ? Pour que la logique métier soit testable sans démarrer Spring,
+        et pour que les décisions techniques (BDD, framework) n'impactent pas le métier.
+    -->
+    <dependencies>
+        <!-- AUCUNE dépendance Spring ou framework : c'est volontaire ! -->
+        <!-- Seul JUnit est autorisé pour les tests -->
+    </dependencies>
+</project>

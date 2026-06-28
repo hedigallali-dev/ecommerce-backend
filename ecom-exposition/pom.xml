@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.ecommerce</groupId>
+        <artifactId>ecom-backend</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>ecom-exposition</artifactId>
+    <name>ecom-backend :: Exposition</name>
+
+    <!--
+        MODULE EXPOSITION : Adaptateurs entrants (Driving Side) + Point d'entrée
+        =========================================================================
+        Contient les Controllers REST et les DTOs d'API.
+        C'est le seul module qui démarre Spring Boot (@SpringBootApplication).
+        Il agrège tous les autres modules et les assemble.
+
+        En architecture hexagonale, c'est un "adaptateur primaire" :
+        il traduit les requêtes HTTP en appels aux Use Cases.
+    -->
+    <dependencies>
+        <!-- Dépend de tous les autres modules -->
+        <dependency>
+            <groupId>com.ecommerce</groupId>
+            <artifactId>ecom-domain</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ecommerce</groupId>
+            <artifactId>ecom-application</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ecommerce</groupId>
+            <artifactId>ecom-infrastructure</artifactId>
+        </dependency>
+
+        <!-- Spring Web : REST controllers, Jackson JSON -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Swagger / OpenAPI : génère la doc et l'UI automatiquement -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- spring-boot-maven-plugin : crée le JAR exécutable ("fat jar") -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
