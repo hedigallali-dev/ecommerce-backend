@@ -13,23 +13,12 @@
     <artifactId>ecom-application</artifactId>
     <name>ecom-backend :: Application</name>
 
-    <!--
-        MODULE APPLICATION : Orchestration des cas d'usage
-        ===================================================
-        Contient les Use Cases (ce que l'application PEUT faire).
-        Dépend du Domain (pour utiliser les entités et ports),
-        mais PAS de l'infrastructure (pas de Spring Web, pas de BDD).
-
-        Peut utiliser Spring (annotations @Service) mais sans dépendances techniques externes.
-    -->
     <dependencies>
-        <!-- Accès aux entités et ports du domaine -->
         <dependency>
             <groupId>com.ecommerce</groupId>
             <artifactId>ecom-domain</artifactId>
         </dependency>
 
-        <!-- Spring context pour @Service, injection de dépendances -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>

@@ -13,17 +13,6 @@
     <artifactId>ecom-infrastructure</artifactId>
     <name>ecom-backend :: Infrastructure</name>
 
-    <!--
-        MODULE INFRASTRUCTURE : Adaptateurs sortants (Driven Side)
-        ===========================================================
-        Implémente les ports de sortie définis dans le Domain.
-        C'est ici qu'on met les "détails techniques" :
-        - Stockage en mémoire (HashMap) — ou JPA demain, sans toucher au Domain
-        - Clients HTTP externes
-        - Files de messages
-
-        Connaît le Domain et l'Application, mais PAS l'Exposition.
-    -->
     <dependencies>
         <dependency>
             <groupId>com.ecommerce</groupId>
