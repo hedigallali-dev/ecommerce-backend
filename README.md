@@ -192,7 +192,8 @@ La méthode s'appelle `execute` pour deux raisons :
 un objet = une action.
 
 **Raison 2 — Le Controller est découplé du nom métier.** Il appelle toujours `.execute(...)`,
-quelle que soit l'action
+quelle que soit l'action.
+
 ---
 ## Choix techniques
 
